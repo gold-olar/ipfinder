@@ -36,6 +36,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('*', (req, res)=>{
+  res.json({
+    status: 404,
+    message: 'Purpose Not Found.',
+  })
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

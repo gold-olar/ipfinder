@@ -12,7 +12,7 @@ const fetchData =`http://api.ipstack.com/${address}?access_key=${api_key}`
 
 
 router.get('/', function (req, res, next) {
-
+  console.log(req.ip)
 
   async function getUser() {
     try {
