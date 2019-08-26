@@ -3,19 +3,19 @@ const router = express.Router();
 const axios = require('axios');
 require('dotenv').config;
 const api_key = '85cd66a307c4ec9aa09de6292683cd24';
-const ip = require('ip');
-const address = ip.address();
 
-// const fetchData = "http://api.ipstack.com/196.27.128.5?access_key=85cd66a307c4ec9aa09de6292683cd24";
-
-const fetchData =`http://api.ipstack.com/${address}?access_key=${api_key}`
+// Sample Ip Address can be...
+// const address = '197.210.64.81';
 
 
-router.get('/', function (req, res, next) {
-  console.log(req.ip)
 
+
+router.get('/:address', function (req, res, next) {
+  const {address} = req.params;
+  const fetchData =`http://api.ipstack.com/${address}?access_key=${api_key}`
   async function getUser() {
     try {
+
       const response = await axios.get(fetchData);
       const { continent_name, country_name, region_name, latitude, longitude, ip } = response.data;
       res.json({
@@ -32,6 +32,7 @@ router.get('/', function (req, res, next) {
     }
   }
   getUser();
+
 });
 
 module.exports = router;
