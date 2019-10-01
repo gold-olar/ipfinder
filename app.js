@@ -37,9 +37,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('*', (req, res)=>{
-  res.json({
+  res.status(404).json({
     status: 404,
-    message: 'Purpose Not Found.',
+    message: 'Address does not exist.',
   })
 })
 
